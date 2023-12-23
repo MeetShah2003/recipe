@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <form action="/recipe/all" method="post">
+        <div id="parent"></div>
+    </form>
+</body>
+<script>
+    let recipe = (item) => {
+        item.map((ele) => {
+            let name = document.createElement('h1');
+            name.innerHTML = ele.name;
+            let div = document.createElement('div');
+            div.append(name);
+            document.getElementById('parent').append(div);
+        })
+    }
+    fetch('http://localhost:8090/recipe/all')
+        .then((ele) => ele.json())
+        .then((item) => recipe(item));
+</script>
+
+</html>
